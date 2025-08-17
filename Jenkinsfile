@@ -39,7 +39,7 @@ pipeline {
     stage('Build & Test') {
       when { expression { return !params.ROLLBACK } }
       steps {
-        echo "Current Build Number: ${env.BUILD_NUMBER}"
+        echo "Current Build Number: ${env.BUILD_NUMBER} -  Branch: ${env.REG_USER}"
       }
     }
 
