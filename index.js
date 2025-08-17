@@ -4,7 +4,7 @@ const port = 3000;
 
 app.get("/", (req, res) => {
   const dataHora = new Date().toLocaleString("pt-BR");
-  res.send(`Bem vindo, ao Servidor Ubuntu 02 - ${dataHora}`);
+  res.send(`Bem vindo, ao Linux Ubuntu 02 - ${dataHora}`);
 });
 
 app.listen(port, () => {
