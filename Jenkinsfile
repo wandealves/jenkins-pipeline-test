@@ -67,9 +67,9 @@ pipeline {
           echo "$REG_PASS" | docker login $REGISTRY -u "$REG_USER" --password-stdin
 
           echo "Subindo $IMAGE:$tag..."
-          docker pull $IMAGE:$tag
+          docker pull wandersonalves/jenkins-pipeline-test:latest
           docker rm -f $APP_NAME || true
-          docker run -d --name $APP_NAME -p 8082:8082 --restart=always $IMAGE:$tag
+          docker run -d --name $APP_NAME -p 8082:8082 --restart=always wandersonalves/jenkins-pipeline-test:latest
 
           echo "Verificando healthcheck..."
           for i in {1..20}; do
