@@ -50,7 +50,7 @@ pipeline {
           def shortSha = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
           env.AUTO_TAG = "v${env.BUILD_NUMBER}-${shortSha}"
         }
-        withCredentials([usernamePassword(credentialsId: 'docker-registry-creds', usernameVariable: 'REG_USER', passwordVariable: 'REG_PASS']) {
+        withCredentials([usernamePassword(credentialsId: 'docker-registry-creds', usernameVariable: 'REG_USER', passwordVariable: 'REG_PASS')]) {
           sh """
             echo "$REG_PASS" | docker login ${REGISTRY} -u "$REG_USER" --password-stdin
             docker build -t ${IMAGE}:${AUTO_TAG} -t ${IMAGE}:latest .
