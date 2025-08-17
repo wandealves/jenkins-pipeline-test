@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 8082;
 
 app.get("/", (req, res) => {
   const dataHora = new Date().toLocaleString("pt-BR");

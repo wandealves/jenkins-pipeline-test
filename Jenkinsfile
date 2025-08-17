@@ -61,15 +61,15 @@ pipeline {
       }
     }
 
-    /*stage('Deploy em Produção (Node prod)') {
-      agent { label 'prod' } // roda na VM de produção
+    stage('Deploy em Produção (Node ubuntu2)') {
+      agent { label 'ubuntu2' } // roda na VM de produção
       steps {
         script {
           def tag = params.ROLLBACK ? params.IMAGE_TAG?.trim() : (params.IMAGE_TAG?.trim() ?: env.AUTO_TAG)
           if (!tag) {
             error "Defina IMAGE_TAG para rollback ou deixe em branco no deploy normal."
           }
-          withCredentials([usernamePassword(credentialsId: env.REGISTRY_CREDS, usernameVariable: 'REG_USER', passwordVariable: 'REG_PASS')]) {
+          withCredentials([usernamePassword(credentialsId: 'REGISTRY_CREDS', usernameVariable: 'REG_USER', passwordVariable: 'REG_PASS')]) {
             sh """
               set -e
               echo "Fazendo login no registry na VM de produção..."
@@ -78,11 +78,11 @@ pipeline {
               echo "Subindo ${IMAGE}:${tag}..."
               docker pull ${IMAGE}:${tag}
               docker rm -f ${APP_NAME} || true
-              docker run -d --name ${APP_NAME} -p 8080:8080 --restart=always ${IMAGE}:${tag}
+              docker run -d --name ${APP_NAME} -p 8082:8082 --restart=always ${IMAGE}:${tag}
 
               echo "Verificando healthcheck..."
               for i in {1..20}; do
-                if curl -fsS http://localhost:8080/health >/dev/null; then
+                if curl -fsS http://localhost:8082/health >/dev/null; then
                   echo "Aplicação saudável."
                   exit 0
                 fi
@@ -95,7 +95,7 @@ pipeline {
           }
         }
       }
-    }*/
+    }
   }
 
   post {
