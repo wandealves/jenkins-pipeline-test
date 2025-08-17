@@ -39,10 +39,7 @@ pipeline {
     stage('Build & Test') {
       when { expression { return !params.ROLLBACK } }
       steps {
-        sh '''
-          echo "Rodando testes..."
-          # Ex.: npm ci && npm test $BUILD_NUMBER
-        '''
+        echo "Current Build Number: ${env.BUILD_NUMBER}"
       }
     }
 
