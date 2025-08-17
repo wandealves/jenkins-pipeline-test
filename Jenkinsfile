@@ -13,18 +13,9 @@ pipeline {
   }
 
   environment {
-    //APP_NAME = 'minha-app'
-    // Para Docker Hub:
-    //REGISTRY = 'docker.io'
-    //REGISTRY_NAMESPACE = 'SEU_USUARIO' // ajuste para seu usuário/orga no Docker Hub
-    //IMAGE = "${env.REGISTRY}/${env.REGISTRY_NAMESPACE}/${env.APP_NAME}"
-    //REGISTRY_CREDS = 'docker-registry-creds'
     REGISTRY = 'docker.io'
-    APP_NAME = credentials('APP_NAME')
-    REGISTRY_NAMESPACE = credentials('REGISTRY_NAMESPACE')
-    REGISTRY_CREDS = credentials('REGISTRY_CREDS')
-    REG_USER = credentials('REG_USER')
-    REG_PASS= credentials('REG_PASS')
+    APP_NAME = 'jenkins-pipeline-test'
+    REGISTRY_NAMESPACE = 'wandersonalves'
     IMAGE = "${env.REGISTRY}/${env.REGISTRY_NAMESPACE}/${env.APP_NAME}"
   }
 
