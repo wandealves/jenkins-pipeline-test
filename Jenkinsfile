@@ -69,11 +69,11 @@ pipeline {
           echo "Subindo $IMAGE:$tag..."
           docker pull wandersonalves/jenkins-pipeline-test:latest
           docker rm -f $APP_NAME || true
-          docker run -d --name $APP_NAME -p 8082:8082 --restart=always wandersonalves/jenkins-pipeline-test:latest
+          docker run -d --name $APP_NAME -p 3000:3000 --restart=always wandersonalves/jenkins-pipeline-test:latest
 
           echo "Verificando healthcheck..."
           for i in {1..20}; do
-            if curl -fsS http://localhost:8082/health >/dev/null; then
+            if curl -fsS http://localhost:3000/health >/dev/null; then
               echo "Aplicação saudável."
               exit 0
             fi
