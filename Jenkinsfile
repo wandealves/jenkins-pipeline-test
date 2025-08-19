@@ -52,8 +52,8 @@ pipeline {
       }
     }
 
-    stage('Deploy em Produção (Node ubuntu2)') {
-  agent { label 'ubuntu2' }
+    stage('Deploy em Produção (Node contabo)') {
+  agent { label 'contabo' }
   steps {
     script {
       def tag = params.ROLLBACK ? params.IMAGE_TAG?.trim() : (params.IMAGE_TAG?.trim() ?: env.AUTO_TAG)
